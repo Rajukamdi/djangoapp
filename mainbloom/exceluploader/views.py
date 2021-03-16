@@ -16,6 +16,8 @@ class Excel(APIView):
 
     def post(self, request):
         file = request.FILES.get('filename')
+        if not file:
+            return render(request, 'upload.html', context={'error_message': "Please upload file"})
         data = pd.read_excel(file)
         bank_data = data.T.to_dict()
         all_bank_details = bank_data.values()
