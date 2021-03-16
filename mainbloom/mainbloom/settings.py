@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'mainbloom.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'moneybloom.sqlite3',
+        'NAME': str(BASE_DIR / 'moneybloom.sqlite3'),
     }
 }
 
