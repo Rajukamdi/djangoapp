@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="/bloom/home" method="get">
+    {% csrf_token %}
+    <article class="navbar-form navbar-left p-0 m-0 ml-b">
+        <div class="form-group">
+            <label>Search Keyword: </label>
+            <input type="text" name="search"  value="{{search_value}}" class="form-control post_search_text" placeholder="Enter a keyword">
+        </div>
+        <input type="submit" value="Filter" class="btn btn-primary post_search_submit"/>
+    </article>
+</form>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Bank Name</th>
+        <th>IFSC</th>
+        <th>Branch</th>
+        <th>Address</th>
+        <th>District</th>
+        <th>State</th>
+        <th>City</th>
+        <th>Phone</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for bank in data %}
+    <tr>
+        <td>{{ bank.bank_name }}</td>
+        <td>{{ bank.ifsc }}</td>
+        <td>{{ bank.branch }}</td>
+        <td>{{ bank.address }}</td>
+        <td>{{ bank.district }}</td>
+        <td>{{ bank.state }}</td>
+        <td>{{ bank.city }}</td>
+        <td>{{ bank.phone }}</td>
+
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% include 'pagination.html' with data=data %}
+
+
+{% endblock %}

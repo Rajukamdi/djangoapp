@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+
+    <form action="/bloom/excel-upload" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Excel Upload</div>
+                <div class="panel-body">
+                    {% if error_message %}
+                    <p class="bg-danger p-d ml-b">{{ error_message }}</p>
+                    {% endif %}
+
+
+                    <div class="form-group clearfix">
+                        <label class="col-md-4 control-label text-right">Excel File Upload:</label>
+                        <div class="col-md-6">
+                            <input type="file" name="filename">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-md-offset-4">
+                        <label class="col-md-4 control-label text-right">
+                            <input type="submit" value="Upload" class="btn btn-success">
+                        </label>
+                    </div>
+
+                    {% if message %}
+                    <div>
+                        {{ message }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
