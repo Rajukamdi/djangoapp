@@ -1,1 +1,1 @@
-web:gunicorn mainbloom.wsgi --log-file -
+web: gunicorn mainbloom.wsgi --log-file -
