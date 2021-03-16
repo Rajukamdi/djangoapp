@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'tt%xd+6ks#e@@&u5)(*c2fs#c^gsec#6cbs^3(3%-9bq#boo@!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['money-bloom.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
