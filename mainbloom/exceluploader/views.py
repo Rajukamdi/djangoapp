@@ -5,7 +5,8 @@ import pandas as pd
 from rest_framework.views import APIView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from .core import fetch_bank_data_by_ifsc, bulk_insert_data, fetch_all_bank_details, fetch_all_bank_details_by_search
+from .core import fetch_bank_data_by_ifsc, bulk_insert_data, fetch_all_bank_details, fetch_all_bank_details_by_search, \
+    bulk_update_data
 
 
 class Excel(APIView):
@@ -24,7 +25,9 @@ class Excel(APIView):
         existing_ifsc_codes = [bank.ifsc for bank in bank_details]
         need_to_insert_ifc_codes = list(set(all_ifsc_codes) ^ set(existing_ifsc_codes))
         inserted_data = bulk_insert_data(all_bank_details, need_to_insert_ifc_codes)
-        message = "Inserted {} rows successfully".format(len(inserted_data))
+        updated_rows = bulk_update_data(all_bank_details, bank_details)
+        message = "Inserted {} rows successfully and Updated {} rows successfully".format(len(inserted_data),
+                                                                                          updated_rows)
         return render(request, 'upload.html', context={'message': message})
 
 
